@@ -10,7 +10,7 @@ app.config["TEMPLATES_AUTO_RELOAD"] = True
 app.config['SECRET_KEY'] = 'ultra_secret_key'
 app.secret_key = 'ultra_secret_key'
 
-app.config['SESSION_TYPE'] = 'sqlalchemy'
+#app.config['SESSION_TYPE'] = 'sqlalchemy'
 
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
