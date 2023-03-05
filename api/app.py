@@ -1,7 +1,7 @@
 from flask import Flask, render_template, redirect, request, session, flash
 from flask_session import Session
 from flask_sqlalchemy import SQLAlchemy
-from other_functions import login_required
+# from other_functions import login_required
 
 app = Flask(__name__)
 
@@ -41,6 +41,20 @@ class prak(db.Model):
         return f'participant: {self.participant}'
 
 db.create_all()
+
+from functools import wraps
+
+def login_required(f):
+    """
+    Decorate routes to require login.
+    https://flask.palletsprojects.com/en/1.1.x/patterns/viewdecorators/
+    """
+    @wraps(f)
+    def decorated_function(*args, **kwargs):
+        if session.get("user_name") is None:
+            return redirect("/login")
+        return f(*args, **kwargs)
+    return decorated_function
 
 @app.route("/")
 def index():
