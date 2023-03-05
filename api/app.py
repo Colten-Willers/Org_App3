@@ -7,7 +7,8 @@ app = Flask(__name__)
 
 app.config["TEMPLATES_AUTO_RELOAD"] = True
 
-app.config['SECRET_KEY'] = 'ultra_secret_key'
+#app.config['SECRET_KEY'] = 'ultra_secret_key'
+app.secret_key = 'super secret key'
 
 app.config['SESSION_TYPE'] = 'memcache'
 
