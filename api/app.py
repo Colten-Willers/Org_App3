@@ -1,6 +1,7 @@
 from flask import Flask, render_template, redirect, request, session, flash
 from flask_session import Session
 from flask_sqlalchemy import SQLAlchemy
+from tempfile import mkdtemp
 # from other_functions import login_required
 
 app = Flask(__name__)
@@ -10,6 +11,8 @@ app.config["TEMPLATES_AUTO_RELOAD"] = True
 app.config['SECRET_KEY'] = 'ultra_secret_key'
 app.secret_key = 'ultra_secret_key'
 app.config.update(SECRET_KEY = 'ultra_secret_key')
+
+app.config["SESSION_FILE_DIR"] = mkdtemp()
 
 #app.config['SESSION_TYPE'] = 'sqlalchemy'
 
