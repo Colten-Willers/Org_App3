@@ -77,7 +77,9 @@ def register():
         user_password = request.form.get('user_password')
         user_email = request.form.get('user_email')
 
-        user_data = user(user_name=user_name, user_password=user_password, user_email=user_email)
+        password_hash = pbkdf2_sha256.hash(str(user_password))
+
+        user_data = user(user_name=user_name, user_password=password_hash, user_email=user_email)
 
         if user.query.filter_by(user_name=user_name).first():
             return render_template("apology.html", message="User already exists.")
@@ -101,7 +103,7 @@ def login():
 
         if user.query.filter_by(user_name=user_name).first():
             user_data = user.query.filter_by(user_name=user_name).first()
-            if str(user_data.user_password) == str(user_password):
+            if if pbkdf2_sha256.verify(str(user_password), user_data.user_password):
                 session['user_name'] = user_name
                 flash("Succesfully logged in.")
                 return render_template("index.html")
