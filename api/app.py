@@ -159,6 +159,9 @@ def update_data():
         return render_template("update_data.html")
     
     if request.method == "POST":
+        if request.form.get('Delete') == 'delete':
+            return redirect("/delete_data")
+
         rating = request.form.get('rating')
         comment = request.form.get('comment')
         user_id = request.form.get('user_id')
@@ -177,5 +180,30 @@ def update_data():
         entry.comment = comment
 
         db.session.commit()
+
+@login_required
+@app.route("/delete_data", methods=["GET", "POST"])
+def delete_data():
+    if request.method == "GET":
+        return render_template("delete_data.html")
+    
+    if request.method == "POST":
+        user_id = request.form.get('user_id')
+
+        if not user_id:
+            return render_template("apology.html", message="Must enter  data.")
+        
+        check = prak.query.filter_by(user_name=session['user_name'], id=user_id).first()
+
+        if not check:
+            return render_template("apology.html", message="Not your comment.")
+
+        entry = prak.query.filter_by(id=user_id).first()
+
+        db.session.delete(entry)
+        db.session.commit()
+
+        flash("Succesfully deleted the data.")
+        return redirect("/data")
         
         return redirect("/data")
