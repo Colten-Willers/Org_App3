@@ -103,7 +103,7 @@ def login():
 
         if user.query.filter_by(user_name=user_name).first():
             user_data = user.query.filter_by(user_name=user_name).first()
-            if if pbkdf2_sha256.verify(str(user_password), user_data.user_password):
+            if pbkdf2_sha256.verify(str(user_password), user_data.user_password):
                 session['user_name'] = user_name
                 flash("Succesfully logged in.")
                 return render_template("index.html")
