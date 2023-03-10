@@ -2,6 +2,7 @@ from flask import Flask, render_template, redirect, request, session, flash
 from flask_session import Session
 from flask_sqlalchemy import SQLAlchemy
 from tempfile import mkdtemp
+from passlib.hash import pbkdf2_sha256
 # from other_functions import login_required
 
 app = Flask(__name__)
