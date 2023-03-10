@@ -6,6 +6,16 @@
 
 {% block main %}
 
+{% with messages = get_flashed_messages() %}
+  {% if messages %}
+      {% for message in messages %}
+          <div class="alert alert-warning alert-dismissible" id="flashed_message" role="alert">
+              {{message}}
+          </div>
+      {% endfor %}
+  {% endif %}
+{% endwith %}
+
 {% for name, values in data.items() %}
 <div class="card" style="width:400px">
     <div class="card-body" id="boxed">
