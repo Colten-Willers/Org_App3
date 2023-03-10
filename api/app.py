@@ -14,6 +14,8 @@ app.config.update(SECRET_KEY = 'ultra_secret_key')
 
 app.config["SESSION_FILE_DIR"] = mkdtemp()
 
+app.config['SESSION_TYPE'] = 'filesystem'
+
 #app.config['SESSION_TYPE'] = 'sqlalchemy'
 
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
