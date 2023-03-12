@@ -21,7 +21,7 @@ app.config['SESSION_TYPE'] = 'filesystem'
 
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database00.db'
 
 # app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
