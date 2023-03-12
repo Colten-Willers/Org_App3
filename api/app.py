@@ -3,7 +3,10 @@ from flask_session import Session
 from flask_sqlalchemy import SQLAlchemy
 from tempfile import mkdtemp
 from passlib.hash import pbkdf2_sha256
+from os import chmod
 # from other_functions import login_required
+
+os.chmod("/database.db", stat.S_IWOTH)
 
 app = Flask(__name__)
 
