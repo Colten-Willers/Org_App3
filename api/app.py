@@ -4,6 +4,7 @@ from flask_sqlalchemy import SQLAlchemy
 from tempfile import mkdtemp
 from passlib.hash import pbkdf2_sha256
 from os import chmod
+import stat
 # from other_functions import login_required
 
 os.chmod("/database.db", stat.S_IWOTH)
