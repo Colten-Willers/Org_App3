@@ -80,7 +80,7 @@ def register():
 
         password_hash = pbkdf2_sha256.hash(str(user_password))
 
-        user_data = user(user_name=user_name, user_password=password_hash, user_email=user_email)
+        user_data = user(user_name=user_name, user_password=str(password_hash), user_email=user_email)
 
         if user.query.filter_by(user_name=user_name).first():
             return render_template("apology.html", message="User already exists.")
